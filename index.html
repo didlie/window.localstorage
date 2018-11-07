@@ -1,0 +1,50 @@
+
+<script src="all.js"></script>
+<h1 style="width:100%; background:blue; color:white;text-align:center;">window.LocalStorage</h1>
+<div style="float:left;width:45%;">
+    <h2>Interface</h2>
+    <pre>key</pre>
+    <input id='key' type='text' onfocus="clearValue()"><br>
+    <pre>value</pre>
+    <input id='value' type='text'><br><br>
+    <pre>image</pre>
+    <input id='image' type='file'><br><br>
+    <button id='set'>SET</button>
+    <button id='get'>GET</button>
+    <button id='del'>DELETE</button>
+    <button id='getall'>DUMP</button>
+    <button id='clear'>CLEAR</button><br>
+    <button id='tlsp'>Total Local Storage</button>
+    <button id='tlspr'>Local Storage Remaining</button>
+</div>
+<div class="view">
+  <p>No files currently selected for upload</p>
+</div>
+<div style="float:right;width:45%;">
+    <h2>Log</h2>
+    <div id="log">
+    </div>
+</div>
+<script>
+var view = document.querySelector('.view');
+var file = document.getElementById('image');
+var key = document.getElementById('key');
+var value = document.getElementById('value');
+var getall = document.getElementById('getall');
+var clear = document.getElementById('clear');
+var del = document.getElementById('del');
+var log = document.getElementById('log');
+//space
+var tlsp = document.getElementById('tlsp');
+var tlspr = document.getElementById('tlspr');
+document.getElementById('set').addEventListener("click",set);
+document.getElementById('get').addEventListener("click",get);
+document.getElementById('getall').addEventListener("click",dump);
+document.getElementById('clear').addEventListener("click",clearStorage);
+document.getElementById('del').addEventListener("click",remove);
+//totalLocalStorageSpace
+document.getElementById('tlsp').addEventListener("click",get_totalLocalStorageSpace);
+document.getElementById('tlspr').addEventListener("click",get_remainingLocalStorageSpace);
+file.addEventListener("change",updateImageDisplay);
+log.innerHTML = storageAvailable('localStorage');
+</script>
